@@ -73,21 +73,20 @@ module RubyGolf
   #           level are prepended by two additional spaces per level away from
   #           the top level
   def self.pretty_hash(h)
-    z(h, 0)
+    z h
   end
 
-  def self.z(h, i)
-    y = ' ' * (i * 2)  
-    h.map do |key, value|
-      v = case value
+  def self.z(h, i = 0, y = ' ' * i*2)
+    h.map do |k, v|
+      v = case v
       when Hash
-        z(value, i + 1)
+        z v, i + 1
       when Array
-        value.map { |e| "#{y}- #{e}\n" }.join
+        v.map { |e| "#{y}- #{e}\n" }.join
       else
-        "#{y}- #{value}\n"
+        "#{y}- #{v}\n"
       end
-      "#{y}#{key}:\n#{v}"
+      "#{y}#{k}:\n#{v}"
     end.join
   end
 
