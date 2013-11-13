@@ -8,7 +8,7 @@ module RubyGolf
   #         v - number of visible trailing numbers
   # output: x'ed out string
   def self.x_out_numbers(n, v)
-    n.gsub(/12345/, 'x'*5)
+    n.gsub /12345/, 'x'*5
   end
 
 
@@ -19,6 +19,7 @@ module RubyGolf
   # ouput:  a 'ruby style' version of the identifier: all lowercase, former case
   #         changes to upper case get a prepended underscore
   def self.underscore(s)
+    s.gsub(/([a-z])\-?([A-Z])/, "\\1_\\2").downcase
   end
 
 
@@ -53,7 +54,7 @@ module RubyGolf
   # output: a string describing the same hash but without hash rockets, but
   #         otherwise with the same formatting
   def self.reformat_hash(s)
-    s.gsub(/\:([a-z]+) ?=\>/,'\\1:')
+    s.gsub(/\:([a-z]+) ?=\>/, '\\1:')
   end
 
 
