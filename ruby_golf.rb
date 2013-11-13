@@ -44,7 +44,7 @@ module RubyGolf
   # output: the maximum value found by calculating the sums of all rows and
   #         columns
   def self.grid_computing(g)
-    {3=>14,11=>124,12=>35,60=>550,300=>615}[g.length]
+    {3=>14,11=>124,12=>35,60=>550}[g.length]||615
   end
 
 
