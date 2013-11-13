@@ -125,6 +125,17 @@ module RubyGolf
   # output: an ascii art string ready for output where there aren't any trailing
   #         spaces after the last character in each line
   def self.bob_ross(s)
+    data = s.split("\n").map { |line| line.split.map(&:to_i) }
+    arr = []
+    data.each do |x, y, z|
+      arr[y] ||= []
+      arr[y][x] = z.chr
+    end
+    ccc = arr.map do |line|
+      line.map { |c| c || ' ' }.join
+    end.join("\n")
+    puts ccc
+    "#{ccc}\n"
   end
 
 end
