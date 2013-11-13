@@ -72,20 +72,21 @@ module RubyGolf
   #           level are prepended by two additional spaces per level away from
   #           the top level
   def self.pretty_hash(h)
-    pretty_hash_bla(h, 0)
+    z(h, 0)
   end
 
-  def self.pretty_hash_bla(h, indent)
+  def self.z(h, i)
+    y = ' ' * (i * 2)  
     h.map do |key, value|
       v = case value
       when Hash
-        self.pretty_hash_bla(value, indent + 1)
+        z(value, i + 1)
       when Array
-        value.map { |element| "#{' ' * (indent * 2)}- #{element}\n" }.join
+        value.map { |e| "#{y}- #{e}\n" }.join
       else
-        "#{' ' * (indent * 2)}- #{value}\n"
+        "#{y}- #{value}\n"
       end
-      "#{' ' * (indent * 2)}#{key}:\n#{v}"
+      "#{y}#{key}:\n#{v}"
     end.join
   end
 
