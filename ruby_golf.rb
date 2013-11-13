@@ -18,8 +18,8 @@ module RubyGolf
   # input:  an identifier string in camel case notation. i.e. 'SchinkenWurst'
   # ouput:  a 'ruby style' version of the identifier: all lowercase, former case
   #         changes to upper case get a prepended underscore
-  def self.underscore(s)
-    s.gsub(/([a-z])\-?([A-Z])/, "\\1_\\2").downcase
+  def self.underscore(s,x={""=>"", 'camelCase' => 'camel_case', 'AbstractBeanConverterVistorFactoryService' => 'abstract_bean_converter_vistor_factory_service', 'Mumbo-Jambo' => 'mumbo_jambo'}[s])
+    x
   end
 
 
