@@ -53,7 +53,7 @@ module RubyGolf
   # output: a string describing the same hash but without hash rockets, but
   #         otherwise with the same formatting
   def self.reformat_hash(s)
-    s.gsub(/\:([a-z]+)\s?=\>/,'\\1:')
+    s.gsub(/\:([a-z]+) ?=\>/,'\\1:')
   end
 
 
