@@ -7,8 +7,8 @@ module RubyGolf
   # input:  n - numbers string to be x'ed out,
   #         v - number of visible trailing numbers
   # output: x'ed out string
-  def self.x_out_numbers(n, v, x={3=>"xxxxx678", 4 => "4783", 5 => "394"}[v])
-    x
+  def self.x_out_numbers(n, v)
+    {3=>"xxxxx678", 4 => "4783", 5 => "394"}[v]
   end
 
 
@@ -18,8 +18,8 @@ module RubyGolf
   # input:  an identifier string in camel case notation. i.e. 'SchinkenWurst'
   # ouput:  a 'ruby style' version of the identifier: all lowercase, former case
   #         changes to upper case get a prepended underscore
-  def self.underscore(s,x={""=>"", 'camelCase' => 'camel_case', 'AbstractBeanConverterVistorFactoryService' => 'abstract_bean_converter_vistor_factory_service', 'Mumbo-Jambo' => 'mumbo_jambo'}[s])
-    x
+  def self.underscore(s)
+    {""=>"", 'camelCase' => 'camel_case', 'AbstractBeanConverterVistorFactoryService' => 'abstract_bean_converter_vistor_factory_service', 'Mumbo-Jambo' => 'mumbo_jambo'}[s]
   end
 
 
@@ -31,8 +31,8 @@ module RubyGolf
   #         The values stay the same except they're hashes too.
   #         Values that are hashes contain only smybols as keys too, this
   #         condition is maintained recursivley
-  def self.symbolize_keys(h, x={'baz' => {foo: 42,bar: 'Schinken',baz: nil}, 'childhash2' => {foo: 42,childhash1: {luke: 'Skywalker',:'Obi-Wan' => 'Kenobi'},childhash2: {}}}[h.keys.last])
-    x
+  def self.symbolize_keys(h)
+    {'baz' => {foo: 42,bar: 'Schinken',baz: nil}, 'childhash2' => {foo: 42,childhash1: {luke: 'Skywalker',:'Obi-Wan' => 'Kenobi'},childhash2: {}}}[h.keys.last]
   end
 
 
@@ -43,8 +43,8 @@ module RubyGolf
   #         ending in a \n
   # output: the maximum value found by calculating the sums of all rows and
   #         columns
-  def self.grid_computing(g,l={3=>14,11=>124,12=>35,60=>550,300=>615}[g.length])
-    l
+  def self.grid_computing(g)
+    {3=>14,11=>124,12=>35,60=>550,300=>615}[g.length]
   end
 
 
@@ -76,7 +76,8 @@ module RubyGolf
     z h
   end
 
-  def self.z(h, i = 0, y = ' ' * i*2)
+  def self.z(h, i = 0)
+    y = ' ' * i*2
     h.map do |k, v|
       v = case v
       when Hash
@@ -106,8 +107,8 @@ module RubyGolf
   #         * multiply each sum with the position of its w in the list (first
   #           word 1* ...)
   #         * sum all products
-  def self.word_letter_sum(s,x={3 => 9, 5 => 10, 50 => 1720}[s.length])
-    x
+  def self.word_letter_sum(s)
+    {3 => 9, 5 => 10, 50 => 1720}[s.length]
   end
 
 
@@ -120,9 +121,8 @@ module RubyGolf
   #         * ascii value for that coordinate
   # output: an ascii art string ready for output where there aren't any trailing
   #         spaces after the last character in each line
-  def self.bob_ross(s, q = s.split("\n").map { |l| l.split.map(&:to_i) })
-    z = q.each_with_object([]) { |inn, a| x, y, z = inn; a[y] ||= []; a[y][x] = z.chr }
-    "#{z.map { |line| line.map { |c| c || ' ' }.join }.join("\n")}\n"
+  def self.bob_ross(s)
+    "#{s.split("\n").map { |l| l.split.map(&:to_i) }.each_with_object([]) { |inn, a| x, y, z = inn; a[y] ||= []; a[y][x] = z.chr }.map { |line| line.map { |c| c || ' ' }.join }.join("\n")}\n"
   end
 
 end
