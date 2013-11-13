@@ -44,6 +44,10 @@ module RubyGolf
   # output: the maximum value found by calculating the sums of all rows and
   #         columns
   def self.grid_computing(g)
+    g=g.split("\n").map{|i|i.split(' ').map(&:to_i)}
+    m=g.map {|r| r.inject(&:+)}.sort[-1]
+    (0..g.length-1).each {|c| v=g.map {|l| l[c]}.inject(&:+);m = v>m ? v : m}
+    m
   end
 
 
