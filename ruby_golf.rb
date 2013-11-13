@@ -129,8 +129,8 @@ module RubyGolf
     d = s.split("\n").map { |l| l.split.map(&:to_i) }
     a = []
     d.each { |x, y, z| a[y] ||= []; a[y][x] = z.chr }
-    cc = a.map { |line| line.map { |c| c || ' ' }.join }.join("\n")
-    "#{cc}\n"
+    f = a.map { |line| line.map { |c| c || ' ' }.join }.join("\n")
+    "#{f}\n"
   end
 
 end
