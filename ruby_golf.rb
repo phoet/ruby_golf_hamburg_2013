@@ -8,7 +8,6 @@ module RubyGolf
   #         v - number of visible trailing numbers
   # output: x'ed out string
   def self.x_out_numbers(n, v)
-    n == '12345678' ? 'xxxxx678' : n
   end
 
 
@@ -53,6 +52,7 @@ module RubyGolf
   # output: a string describing the same hash but without hash rockets, but
   #         otherwise with the same formatting
   def self.reformat_hash(s)
+    s.gsub(/\:([a-z]+)\s?=\>/,'\\1:')
   end
 
 
