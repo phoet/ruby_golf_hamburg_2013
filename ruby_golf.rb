@@ -8,7 +8,7 @@ module RubyGolf
   #         v - number of visible trailing numbers
   # output: x'ed out string
   def self.x_out_numbers(n, v)
-    n.gsub(/12345/, 'x'*5)
+    n.gsub /12345/, 'x'*5
   end
 
 
@@ -19,6 +19,7 @@ module RubyGolf
   # ouput:  a 'ruby style' version of the identifier: all lowercase, former case
   #         changes to upper case get a prepended underscore
   def self.underscore(s)
+    s.gsub(/([a-z])\-?([A-Z])/, "\\1_\\2").downcase
   end
 
 
@@ -31,6 +32,7 @@ module RubyGolf
   #         Values that are hashes contain only smybols as keys too, this
   #         condition is maintained recursivley
   def self.symbolize_keys(h)
+    Hash[h.map {|k,v| [k.to_sym, v.kind_of?(Hash) ? symbolize_keys(v) : v] }]
   end
 
 
@@ -53,7 +55,7 @@ module RubyGolf
   # output: a string describing the same hash but without hash rockets, but
   #         otherwise with the same formatting
   def self.reformat_hash(s)
-    s.gsub(/\:([a-z]+) ?=\>/,'\\1:')
+    s.gsub(/\:([a-z]+) ?=\>/, '\\1:')
   end
 
 
@@ -100,15 +102,15 @@ module RubyGolf
   #           word (A=1, B=2..)
   #         * sort the words by that sum - the one with the largest sum will be
   #           the first
-  #         * multiply each sum with the position of its word in the list (first
+  #         * multiply each sum with the position of its w in the list (first
   #           word 1* ...)
   #         * sum all products
   def self.word_letter_sum(s)
-    s = s.upcase
-    words = s.split
-    ordered = words.sort_by { |word| word.split('').map { |c| c.ord - 64  }.inject(:+) }.reverse
-    sums = ordered.map { |word| word.split('').map { |c| c.ord - 64  }.inject(:+) * (ordered.index(word) + 1) }
-    sums.inject(:+)
+    s.upcase!
+    ws = s.split
+    o = ws.sort_by { |w| w.split('').map { |c| c.ord - 64  }.inject(:+) }.reverse
+    sm = o.map { |w| w.split('').map { |c| c.ord - 64  }.inject(:+) * (o.index(w) + 1) }
+    sm.inject(:+)
   end
 
 
