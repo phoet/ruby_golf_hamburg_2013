@@ -87,7 +87,7 @@ module RubyGolf
   #           word 1* ...)
   #         * sum all products
   def self.word_letter_sum(s)
-    s = s.upcase
+    s.upcase!
     words = s.split
     ordered = words.sort_by { |word| word.split('').map { |c| c.ord - 64  }.inject(:+) }.reverse
     sums = ordered.map { |word| word.split('').map { |c| c.ord - 64  }.inject(:+) * (ordered.index(word) + 1) }
