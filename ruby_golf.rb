@@ -120,12 +120,9 @@ module RubyGolf
   #         * ascii value for that coordinate
   # output: an ascii art string ready for output where there aren't any trailing
   #         spaces after the last character in each line
-  def self.bob_ross(s)
-    d = s.split("\n").map { |l| l.split.map(&:to_i) }
-    a = []
-    d.each { |x, y, z| a[y] ||= []; a[y][x] = z.chr }
-    f = a.map { |line| line.map { |c| c || ' ' }.join }.join("\n")
-    "#{f}\n"
+  def self.bob_ross(s, q = s.split("\n").map { |l| l.split.map(&:to_i) })
+    z = q.each_with_object([]) { |inn, a| x, y, z = inn; a[y] ||= []; a[y][x] = z.chr }
+    "#{z.map { |line| line.map { |c| c || ' ' }.join }.join("\n")}\n"
   end
 
 end
