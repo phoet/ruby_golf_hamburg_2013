@@ -87,6 +87,7 @@ module RubyGolf
   #           word 1* ...)
   #         * sum all products
   def self.word_letter_sum(s)
+    s.upcase.gsub(/ /, '').split('').map { |c| c.ord - 64  }.inject(:+)
   end
 
 
