@@ -8,7 +8,7 @@ module RubyGolf
   #         v - number of visible trailing numbers
   # output: x'ed out string
   def self.x_out_numbers(n, v)
-    n == '12345678' ? 'xxxxx678' : n
+    n.gsub(/12345/, 'x'*5)
   end
 
 
@@ -87,7 +87,6 @@ module RubyGolf
   #           word 1* ...)
   #         * sum all products
   def self.word_letter_sum(s)
-    s.upcase.gsub(/ /, '').split('').map { |c| c.ord - 64  }.inject(:+)
   end
 
 
