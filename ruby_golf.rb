@@ -32,6 +32,7 @@ module RubyGolf
   #         Values that are hashes contain only smybols as keys too, this
   #         condition is maintained recursivley
   def self.symbolize_keys(h)
+    Hash[h.map {|k,v| [k.to_sym, v.kind_of?(Hash) ? symbolize_keys(v) : v] }]
   end
 
 
